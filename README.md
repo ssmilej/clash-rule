@@ -4,6 +4,5 @@
 
 规则源自:
 
-[ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)
+[ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR/tree/master)
 
-[s0w0h/clash-rule](https://github.com/s0w0h/clash-rule)

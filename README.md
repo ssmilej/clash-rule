@@ -1,6 +1,6 @@
-## Clash_Rule_Diy
+# Clash_Rule_Diy
 
-# 自用clash规则
+## 自用clash规则
 
 规则源自:
 

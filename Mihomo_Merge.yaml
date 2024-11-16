@@ -1,140 +1,351 @@
 #Mihomo覆写配置
-
-pg: &pg {type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
-
-# 自动选择策略组：选取延迟最低节点
-auto: &auto {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 50, include-all: true}
-
-# 手动选择策略组：手动选择想要的节点/策略组
-select: &select {type: select, include-all: true}
-
-# 故障回退策略组：策略组将按顺序选择你列表中第一个可用的节点
-fallback: &fallback {type: fallback, url: http://www.gstatic.com/generate_204, interval: 300, include-all: true}
-
-# 负载均衡策略组：不同的请求将使用不同的代理节点
-load-balance: &load-balance {type: load-balance, strategy: consistent-hashing, url: http://www.gstatic.com/generate_204, interval: 300, include-all: true}
-
-# classical规则相关
-c: &c {type: http, behavior: classical, interval: 86400}
-
-# domain规则相关
-d: &d {type: http, behavior: domain, interval: 86400}
-
-# ipcidr规则相关
-i: &i {type: http, behavior: ipcidr, interval: 86400}
-
-
 proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - 🚀 手动切换
+      - ♻️ 自动选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - DIRECT
+  - name: 🚀 手动切换
+    type: select
+    include-all: true
+  - name: ♻️ 自动选择
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    include-all: true
+  - name: 🧚 AI
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 📲 Telegram
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 📹 Youtube
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 🎞 Netflix
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 📺 Bahamut
+    type: select
+    proxies:
+      - 🇨🇳 台湾节点
+      - 🇭🇰 香港节点
+      - 🚀 节点选择
+      - DIRECT
+  - name: 🎬 Emby
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 📼 Bilibili
+    type: select
+    proxies:
+      - DIRECT
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🚀 节点选择
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 🎮 游戏平台
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🐟 兜底分流
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🇭🇰 香港节点
+      - 🇺🇸 美国节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇨🇳 台湾节点
+      - ♻️ 自动选择
+      - DIRECT
+  - name: 🇭🇰 香港节点
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    include-all: true
+    filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"
+  - name: 🇺🇸 美国节点
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    include-all: true
+    filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\
+      \b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"
+  - name: 🇸🇬 狮城节点
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    include-all: true
+    filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAM\
+      E)\b))).*$"
+  - name: 🇯🇵 日本节点
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    include-all: true
+    filter: "^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏\
+      |(\b(GAME)\b))).*$"
+  - name: 🇨🇳 台湾节点
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    include-all: true
+    filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)"
 
-  #分流分组
-
-  - {name: 🚀 节点选择, type: select, proxies: [🚀 手动切换, ♻️ 自动选择,🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT]}
-
-  - {name: 🚀 手动切换, <<: *select}
-
-  - {name: ♻️ 自动选择, <<: *auto}
-
-  - {name: 🧚 AI, <<: *pg}
-
-  - {name: 📲 Telegram, <<: *pg}
-
-  - {name: 📹 Youtube, <<: *pg}
-
-  - {name: 🎞 Netflix, <<: *pg}
-
-  - {name: 📺 Bahamut, type: select, proxies: [🇨🇳 台湾节点, 🇭🇰 香港节点, 🚀 节点选择, DIRECT]}
-
-  - {name: 🎬 Emby, <<: *pg}
-
-  - {name: 📼 Bilibili, type: select, proxies: [DIRECT, 🇭🇰 香港节点, 🇨🇳 台湾节点,🚀 节点选择]}
-
-  - {name: 🌍 国外媒体, <<: *pg}
-
-  - {name: Ⓜ️ 微软服务, <<: *pg}
-
-  #- {name: 📢 谷歌FCM, <<: *pg}
-
-  - {name: 🍎 苹果服务, <<: *pg}
-
-  - {name: 🎮 游戏平台, <<: *pg}
-
-  - {name: 🎯 全球直连, type: select, proxies: [DIRECT, 🚀 节点选择]}
-
-  - {name: 🐟 兜底分流, <<: *pg}
-
-  #节点地区分组
-
-  - {name: 🇭🇰 香港节点, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-
-  - {name: 🇺🇸 美国节点, <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-
-  - {name: 🇸🇬 狮城节点, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-
-  - {name: 🇯🇵 日本节点, <<: *auto, filter: "^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-
-  - {name: 🇨🇳 台湾节点, <<: *auto, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)"}
-
-
-
-# 规则提供商配置 - 优化版
 rule-providers:
+  Inside:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Inside.list
+    url: https://raw.githubusercontent.com/cutethotw/ClashRule/main/Rule/Inside.list
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/LocalAreaNetwork.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
+  UnBan:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/UnBan.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list
+  AI:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/AI.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/AI.list
+  Microsoft:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Microsoft.list
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list
+  GoogleFCM:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/GoogleFCM.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+  GoogleCN:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/GoogleCN.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list
+  Apple:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Apple.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Apple.list
+  Telegram:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Telegram.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Telegram.list
+  SteamCN:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/steamCN.list
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/SteamCN/SteamCN.list
+  Game:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Game.list
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.list
+  YouTube:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/YouTube.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/YouTube.list
+  Netflix:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Netflix.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Netflix.list
+  Emby:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Emby.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Emby.list
+  Bahamut:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Bahamut.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Bahamut.list
+  BilibiliHMT:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/BilibiliHMT.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list
+  BiliBili:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/BiliBili.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Bilibili.list
+  ProxyMedia:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/ProxyMedia.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyMedia.list
+  ChinaDomain:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/ChinaDomain.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ChinaDomain.list
+  ChinaCompanyIp:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/ChinaCompanyIp.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+  Download:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/Download.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Download.list
+  ProxyGFW:
+    type: http
+    behavior: classical
+    interval: 86400
+    format: text
+    path: ./rule-providers/ProxyGFW.list
+    url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list
 
- # 直连
- Inside: {<<: *c, format: text, path: ./rule-providers/Inside.list,  url: https://raw.githubusercontent.com/cutethotw/ClashRule/main/Rule/Inside.list}
- LocalAreaNetwork: {<<: *c, format: text, path: ./rule-providers/LocalAreaNetwork.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list}
- UnBan: {<<: *c, format: text, path: ./rule-providers/UnBan.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list}
-
- # AI平台
- AI: {<<: *c, format: text, path: ./rule-providers/AI.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/AI.list}
-
- # 微软服务 
- #OneDrive: {<<: *c, format: text, path: ./rule-providers/OneDrive.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/OneDrive.list}
- #Github: {<<: *c, format: text, path: ./rule-providers/Github.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Github.list}
- Microsoft: {<<: *c, format: text, path: ./rule-providers/Microsoft.list,  url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list}
-
- # 谷歌FCM /CN
- GoogleFCM: {<<: *c, format: text, path: ./rule-providers/GoogleFCM.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list}
- GoogleCN: {<<: *c, format: text, path: ./rule-providers/GoogleCN.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list}
-
- # 苹果服务
- Apple: {<<: *c, format: text, path: ./rule-providers/Apple.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Apple.list}
-
- # 电报消息
- Telegram: {<<: *c, format: text, path: ./rule-providers/Telegram.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Telegram.list}
-
- # 游戏下载
- SteamCN: {<<: *c, format: text, path: ./rule-providers/steamCN.list,  url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/SteamCN/SteamCN.list}
-
- # 游戏平台
- Game: {<<: *c, format: text, path: ./rule-providers/Game.list,  url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.list}
-
- # 媒体
- YouTube: {<<: *c, format: text, path: ./rule-providers/YouTube.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/YouTube.list}
- Netflix: {<<: *c, format: text, path: ./rule-providers/Netflix.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Netflix.list}
- Emby: {<<: *c,format: text, path: ./rule-providers/Emby.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Emby.list}
- Bahamut: {<<: *c,format: text, path: ./rule-providers/Bahamut.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Bahamut.list}
- 
- BilibiliHMT: {<<: *c, format: text, path: ./rule-providers/BilibiliHMT.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list}
- BiliBili: {<<: *c, format: text, path: ./rule-providers/BiliBili.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Bilibili.list}
-
- # 国际媒体
- ProxyMedia: {<<: *c, format: text, path: ./rule-providers/ProxyMedia.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyMedia.list}
-
- # 中国大陆
- ChinaDomain: {<<: *d, format: text, path: ./rule-providers/ChinaDomain.list,  url: https://ghp.ci/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list}
- ChinaCompanyIp: {<<: *i, format: text, path: ./rule-providers/ChinaCompanyIp.list,  url: https://ghp.ci/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list}
-
- # 下载服务
- Download: {<<: *c, format: text, path: ./rule-providers/Download.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Download.list}
-
- # 代理网站
- ProxyGFW: {<<: *c, format: text, path: ./rule-providers/ProxyGFW.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list}
- 
- rules:
-  # 优先处理
+rules:
   - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
-
-  # 本地局域网
   - DOMAIN-SUFFIX,local,DIRECT
   - DOMAIN-SUFFIX,localhost,DIRECT
   - IP-CIDR,127.0.0.0/8,DIRECT
@@ -145,8 +356,6 @@ rule-providers:
   - IP-CIDR,100.64.0.0/10,DIRECT
   - IP-CIDR,224.0.0.0/4,DIRECT
   - IP-CIDR6,fe80::/10,DIRECT
-
-  # 应用分流
   - RULE-SET,Inside,🎯 全球直连
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
   - RULE-SET,UnBan,🎯 全球直连
@@ -169,13 +378,5 @@ rule-providers:
   - RULE-SET,ChinaDomain,🎯 全球直连
   - RULE-SET,ChinaCompanyIp,🎯 全球直连
   - RULE-SET,Download,🎯 全球直连
-
-  # 自定义规则
-  #- PROCESS-NAME,Thunder,DIRECT
-
-  # 地域规则
-  #- GEOIP,LAN,🎯 全球直连
   - GEOIP,CN,🎯 全球直连
-
-  # 兜底规则
   - MATCH,🐟 兜底分流

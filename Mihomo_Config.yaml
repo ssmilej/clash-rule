@@ -10,6 +10,16 @@
 #
 # 最后更新时间: 2024-11-17 
 
+# 订阅更新和延迟测试相关参数
+p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
+# 代理提供商配置
+proxy-providers:
+  Subscribe1: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: " "}
+    # 在此将" "替换为你的机场订阅，推荐使用base64或者node list
+    # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程        
+  Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: " "}
+  Subscribe3: {<<: *p, path: ./proxy-providers/Sub3.yaml, url: " "}
+  Subscribe4: {<<: *p, path: ./proxy-providers/Sub4.yaml, url: " "}
 
 #------------------------基础配置------------------------#
 mixed-port: 7890            # 混合端口：HTTP(S)和SOCKS5共用端口
@@ -94,9 +104,6 @@ dns:
 # 策略组引用相关参数
 pg: &pg {type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
 
-# 订阅更新和延迟测试相关参数
-p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
-
 # 自动选择策略组：选取延迟最低节点
 auto: &auto {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 50, include-all: true}
 
@@ -120,16 +127,6 @@ i: &i {type: http, behavior: ipcidr, interval: 86400}
 
 ###结束
 
-
-
-# 代理提供商配置
-proxy-providers:
-  Subscribe1: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: " "}
-    # 在此将" "替换为你的机场订阅，推荐使用base64或者node list
-    # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程        
-  Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: " "}
-  Subscribe3: {<<: *p, path: ./proxy-providers/Sub3.yaml, url: " "}
-  Subscribe4: {<<: *p, path: ./proxy-providers/Sub4.yaml, url: " "}
 
 proxy-groups:
 

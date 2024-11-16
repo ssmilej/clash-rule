@@ -1,101 +1,6 @@
-# BASE: https://github.com/Repcz/Tool/blob/X/Clash/Meta/Mihomo.yaml
-#
-# 基于 Repcz/Tool 项目修改
-#
-# 官方文档：https://wiki.metacubex.one/
-#
-# 以 '#' 或 '//' 开头的配置文件行为注释行
-#
-# Mihomo Version ≥ 1.8.4
-#
-# 最后更新时间: 2024-11-17 
+#Mihomo覆写配置
 
-
-#------------------------基础配置------------------------#
-mixed-port: 7890            # 混合端口：HTTP(S)和SOCKS5共用端口
-tcp-concurrent: true        # TCP并发：允许并发连接TCP,提高并发性能
-unified-delay: true         # 统一延迟：统一显示节点延迟
-allow-lan: true            # 局域网连接：允许其他设备经过本机代理
-bind-address: "*"          # 监听地址：*表示绑定所有IP地址
-find-process-mode: strict  # 进程匹配模式：strict严格,off关闭,always总是
-ipv6: false               # IPv6开关：是否启用IPv6支持
-
-# 运行模式(任选其一):
-# rule: 规则模式 - 根据规则匹配来选择代理
-# global: 全局模式 - 全部流量走代理
-# direct: 直连模式 - 全部流量不走代理
-mode: rule
-
-# 日志等级(按详细程度排序):
-# debug: 调试
-# info: 信息
-# warning: 警告
-# error: 错误
-# silent: 静默
-log-level: info
-
-geodata-mode: true          # GEO模式：true使用geoip.dat数据库,false使用mmdb数据库
-geox-url:
-  geoip: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip-lite.dat"
-  geosite: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
-  mmdb: "https://mirror.ghproxy.com/https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country-lite.mmdb"
-  asn: "https://mirror.ghproxy.com/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
-
-# 外部控制设置
-external-controller: 0.0.0.0:9090  # 外部控制器监听地址
-# external-ui: folder               # 外部控制器UI目录
-# secret: ""                        # 外部控制器密码
-
-profile:
-  store-selected: true 
-  store-fake-ip: true  
-
-#------------------------DNS 配置------------------------#
-dns:
-  cache-algorithm: arc
-  enable: true
-  prefer-h3: true
-  listen: 0.0.0.0:53
-  ipv6: true
-  respect-rules: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "+.lan"
-    - "connect.rom.miui.com"
-    - "+.miwifi.com"
-    - "+.ntp.org"
-    - "+.u-tools.cn"
-    - "+.mediatek.com"
-    - "+.cfprefer1.xyz"
-    - "+.wetab.link"
-    # QQ
-    - "localhost.ptlogin2.qq.com"
-    - "localhost.sec.qq.com"
-    # WeChat
-    - "localhost.work.weixin.qq.com"
-    - "+.weixin.qq.com"
-    - "+.wechat.com"
-    # Windows
-    - "time.windows.com"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "+.wpsmail.net"
-    - "+.henzanapp.com"
-    - "+.pconline.com.cn"
-  proxy-server-nameserver:
-    - 1.1.1.1
-  nameserver:
-    - 119.29.29.29
-    - 8.8.8.8
-
-###建立锚点
-    
-# 策略组引用相关参数
 pg: &pg {type: select, proxies: [🚀 节点选择, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, DIRECT]}
-
-# 订阅更新和延迟测试相关参数
-p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
 
 # 自动选择策略组：选取延迟最低节点
 auto: &auto {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 50, include-all: true}
@@ -118,18 +23,6 @@ d: &d {type: http, behavior: domain, interval: 86400}
 # ipcidr规则相关
 i: &i {type: http, behavior: ipcidr, interval: 86400}
 
-###结束
-
-
-
-# 代理提供商配置
-proxy-providers:
-  Subscribe1: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: " "}
-    # 在此将" "替换为你的机场订阅，推荐使用base64或者node list
-    # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程        
-  Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: " "}
-  Subscribe3: {<<: *p, path: ./proxy-providers/Sub3.yaml, url: " "}
-  Subscribe4: {<<: *p, path: ./proxy-providers/Sub4.yaml, url: " "}
 
 proxy-groups:
 
@@ -228,8 +121,8 @@ rule-providers:
  ProxyMedia: {<<: *c, format: text, path: ./rule-providers/ProxyMedia.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyMedia.list}
 
  # 中国大陆
- ChinaDomain: {<<: *d, format: text, path: ./rule-providers/ChinaDomain.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ChinaDomain.list}
- ChinaCompanyIp: {<<: *i, format: text, path: ./rule-providers/ChinaCompanyIp.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list}
+ ChinaDomain: {<<: *d, format: text, path: ./rule-providers/ChinaDomain.list,  url: https://ghp.ci/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list}
+ ChinaCompanyIp: {<<: *i, format: text, path: ./rule-providers/ChinaCompanyIp.list,  url: https://ghp.ci/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list}
 
  # 下载服务
  Download: {<<: *c, format: text, path: ./rule-providers/Download.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Download.list}
@@ -237,10 +130,7 @@ rule-providers:
  # 代理网站
  ProxyGFW: {<<: *c, format: text, path: ./rule-providers/ProxyGFW.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list}
  
-
-
-# 规则配置 
-rules:
+ rules:
   # 优先处理
   - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
 

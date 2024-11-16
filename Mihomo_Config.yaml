@@ -17,9 +17,9 @@ proxy-providers:
   Subscribe1: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: " "}
     # 在此将" "替换为你的机场订阅，推荐使用base64或者node list
     # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程        
-  Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: " "}
-  Subscribe3: {<<: *p, path: ./proxy-providers/Sub3.yaml, url: " "}
-  Subscribe4: {<<: *p, path: ./proxy-providers/Sub4.yaml, url: " "}
+  #Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: " "}
+  #Subscribe3: {<<: *p, path: ./proxy-providers/Sub3.yaml, url: " "}
+  #Subscribe4: {<<: *p, path: ./proxy-providers/Sub4.yaml, url: " "}
 
 #------------------------基础配置------------------------#
 mixed-port: 7890            # 混合端口：HTTP(S)和SOCKS5共用端口

@@ -53,12 +53,13 @@ proxy-groups:
   - name: 🚀 手动切换
     type: select
     include-all: true
-  - name: ♻️ 自动选择
+  - name: 🇭🇰 香港节点
     type: url-test
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
     include-all: true
+    filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"
   - name: 🧚 AI
     type: select
     proxies:
@@ -188,13 +189,6 @@ proxy-groups:
       - 🇨🇳 台湾节点
       - ♻️ 自动选择
       - DIRECT
-  - name: 🇭🇰 香港节点
-    type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    include-all: true
-    filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"
   - name: 🇺🇸 美国节点
     type: url-test
     url: https://www.gstatic.com/generate_204
@@ -226,6 +220,12 @@ proxy-groups:
     tolerance: 50
     include-all: true
     filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)"
+  - name: ♻️ 自动选择
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    include-all: true
 
 rule-providers:
   Inside:

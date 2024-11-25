@@ -1,17 +1,14 @@
-# BASE: https://github.com/Repcz/Tool/blob/X/Clash/Meta/Mihomo.yaml
-#
-# 基于 Repcz/Tool 项目修改
+# 基于 Repcz/Tool 项目修改,BASE: https://github.com/Repcz/Tool/blob/X/Clash/Meta/Mihomo.yaml
 #
 # 官方文档：https://wiki.metacubex.one/
-#
-# 以 '#' 或 '//' 开头的配置文件行为注释行
-#
+# 
 # Mihomo Version ≥ 1.8.4
 #
-# 最后更新时间: 2024-11-17 
+# 最后更新时间: 2024-11-25 
 
 # 订阅更新和延迟测试相关参数
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
+
 # 代理提供商配置
 proxy-providers:
   Subscribe1: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: " "}
@@ -27,22 +24,10 @@ tcp-concurrent: true        # TCP并发：允许并发连接TCP,提高并发性�
 unified-delay: true         # 统一延迟：统一显示节点延迟
 allow-lan: true            # 局域网连接：允许其他设备经过本机代理
 bind-address: "*"          # 监听地址：*表示绑定所有IP地址
-find-process-mode: strict  # 进程匹配模式：strict严格,off关闭,always总是
+find-process-mode: strict  # 进程匹配模式：strict严格, off关闭, always总是
 ipv6: false               # IPv6开关：是否启用IPv6支持
-
-# 运行模式(任选其一):
-# rule: 规则模式 - 根据规则匹配来选择代理
-# global: 全局模式 - 全部流量走代理
-# direct: 直连模式 - 全部流量不走代理
-mode: rule
-
-# 日志等级(按详细程度排序):
-# debug: 调试
-# info: 信息
-# warning: 警告
-# error: 错误
-# silent: 静默
-log-level: info
+mode: rule                # 运行模式(任选其一): rule规则模式, global全局模式, direct直连模式
+log-level: info           # 日志等级(按详细程度排序): debug: 调试, info: 信息, warning: 警告, error: 错误, silent: 静默
 
 geodata-mode: true          # GEO模式：true使用geoip.dat数据库,false使用mmdb数据库
 geox-url:
@@ -154,8 +139,6 @@ proxy-groups:
 
   - {name: 🚀 手动切换, <<: *select}
 
-  - {name: 🇭🇰 香港节点, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
-
   - {name: 🧚 AI, <<: *pg}
 
   - {name: 📲 Telegram, <<: *pg}
@@ -185,7 +168,8 @@ proxy-groups:
   - {name: 🐟 兜底分流, <<: *pg}
 
   #节点地区分组
-
+  - {name: 🇭🇰 香港节点, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+  
   - {name: 🇺🇸 美国节点, <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
   - {name: 🇸🇬 狮城节点, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
@@ -196,7 +180,7 @@ proxy-groups:
 
   - {name: ♻️ 自动选择, <<: *auto}
 
-# 规则提供商配置 - 优化版
+# 规则提供商配置
 rule-providers:
 
  # 直连

@@ -45,9 +45,9 @@ profile:
   store-selected: true 
   store-fake-ip: true  
 
-#嗅探 enable: false 关闭，开启请修改
+#嗅探 
 sniffer:
-  enable: false
+  enable: false                     #enable: false 关闭，开启请修改
   sniff:
     HTTP:
       ports: [80, 8080-8880]

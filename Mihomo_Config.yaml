@@ -74,7 +74,6 @@ sniffer:
   force-domain:
     - "+.v2ex.com"
   skip-domain:
-    - "Mijia Cloud"
     - "dlg.io.mi.com"
     - "+.push.apple.com"
     - "+.apple.com"
@@ -113,10 +112,10 @@ dns:
     - "+.henzanapp.com"
     - "+.pconline.com.cn"
   proxy-server-nameserver:
-    - 1.1.1.1
+    - 8.8.8.8
   nameserver:
     - 119.29.29.29
-    - 8.8.8.8
+    - 223.5.5.5
 
 ###建立锚点
     
@@ -259,16 +258,12 @@ rules:
   - DOMAIN-SUFFIX,windowsupdate.com,DIRECT
 
   # 本地局域网
-  - DOMAIN-SUFFIX,local,DIRECT
-  - DOMAIN-SUFFIX,localhost,DIRECT
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,17.0.0.0/8,DIRECT
-  - IP-CIDR,100.64.0.0/10,DIRECT
-  - IP-CIDR,224.0.0.0/4,DIRECT
-  - IP-CIDR6,fe80::/10,DIRECT
+  # - DOMAIN-SUFFIX,local,DIRECT
+  # - DOMAIN-SUFFIX,localhost,DIRECT
+  # - IP-CIDR,127.0.0.0/8,DIRECT
+  # - IP-CIDR,172.16.0.0/12,DIRECT
+  # - IP-CIDR,192.168.0.0/16,DIRECT
+  # - IP-CIDR,10.0.0.0/8,DIRECT
 
   # 应用分流
   - RULE-SET,Inside,🎯 全球直连

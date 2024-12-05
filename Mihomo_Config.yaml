@@ -65,7 +65,6 @@ sniffer:
 
 #------------------------DNS 配置------------------------#
 dns:
-  cache-algorithm: arc
   enable: true
   prefer-h3: true
   listen: 0.0.0.0:53
@@ -229,7 +228,7 @@ rule-providers:
  ChinaCompanyIp: {<<: *i, format: text, path: ./rule-providers/ChinaCompanyIp.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list}
 
  # 下载服务
- Download: {<<: *c, format: text, path: ./rule-providers/Download.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Download.list}
+ Download: {<<: *c, format: text, path: ./rule-providers/Download.list,  url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list}
 
  # 代理网站
  ProxyGFW: {<<: *c, format: text, path: ./rule-providers/ProxyGFW.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyGFW.list}
